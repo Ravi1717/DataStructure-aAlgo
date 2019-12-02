@@ -1,0 +1,182 @@
+
+///PART 1
+
+1. O(n + 10) -> O(n)
+
+2. O(100 * n) -> O(n)
+
+3. O(25) -> O(1)
+
+4. O(n^2 + n^3) -> O(n^3)
+
+5. O(n + n + n + n) -> O(n)
+
+6. O(1000 * log(n) + n) -> O(log(n)+n)
+
+7. O(1000 * n * log(n) + n) -> O(n*log(n)+n)
+
+8. O(2^n + n^2) ->
+
+9. O(5 + 3 + 1) -> O(1)
+
+10. O(n + n^(1/2) + n^2 + n * log(n)^10) ->
+
+-------------------------------------------------------------------------------
+/////PART 2
+
+// 1.
+function logUpTo(n) {
+for (var i = 1; i <= n; i++) {           ////-> O(n+1) space
+console.log(i);                               ////->O(n) time
+
+
+// 2. 
+function logAtMost10(n) {  
+for (var i = 1; i <= Math.min(n, 10); i++) {    ////-> O(n+1)  space
+console.log(i);                                           ////->O(n)time
+ }
+}
+
+
+// 3. 
+function logAtLeast10(n) {
+for (var i = 1; i <= Math.max(n, 10); i++) {     ////-> O(n+1) space
+console.log(i);                                        ////->O(n) time
+ }
+}
+
+
+// 4.
+function onlyElementsAtEvenIndex(array) {
+var newArray = Array(Math.ceil(array.length / 2));
+for (var i = 0; i < array.length; i++) {                    /////-> O(n+1) space
+if (i % 2 === 0) {                                                  ////->O(n^2) time
+ newArray[i / 2] = array[i];
+ }
+ }
+return newArray;
+}
+
+
+// 5. 
+function subtotals(array) {
+var subtotalArray = Array(array.length);
+for (var i = 0; i < array.length; i++) {
+var subtotal = 0;
+for (var j = 0; j <= i; j++) {                           /////->O(n+3)  space
+ subtotal += array[j];                                              ////->O(n^2) time
+ }
+ subtotalArray[i] = subtotal;
+ }
+return subtotalArray;
+}
+
+---------------------------------------------------------------------------------------------------------------------------------
+
+// 1. Even or odd
+function isEven(value){
+ if (value % 2 == 0){
+ return true;
+ }                                               //////////////-> O(1)->space
+ else                                                            //////->O(1) time
+ return false;
+}
+
+
+// 2. Are You Here?
+function areYouHere(arr1, arr2) {
+ for (let i=0; i<arr1.length; i++) {
+ const el1 = arr1[i];
+ //ticks1++;                                          ///////////-> O(n^2+4) space
+ for (let j=0; j<arr2.length; j++) {                                         ///////->O(n^3) time
+ const el2 = arr2[j];
+ //ticks2++;
+ if (el1 === el2) return true;
+ }
+ }
+ return false;
+}
+
+// 3. Doubler
+function doubleArrayValues(array) { 
+ for (let i=0; i<array.length; i++) {                            /////->O(n+1)space
+ array[i] *= 2;                                                                /////->O(n) time
+ }
+ return array;
+}
+
+
+// 4. Naive Search
+function naiveSearch(array, item) {                            //////-> O(n+2) space
+ for (let i=0; i<array.length; i++) {                                               //////->O(n) time
+ if (array[i] === item) {
+ return i;
+ }
+ }
+
+// 5. Creating Pairs
+function createPairs(arr) {
+ for (let i = 0; i < arr.length; i++) {                     ///////////-> O(n^3) space
+ for(let j = i+1; j < arr.length; j++) {                                         ///////->O(n^2) time
+ console.log(arr[i] + ", " + arr[j] );
+ }
+ }
+ //console.log(ticks);
+}
+
+// 6. Computing Fibonacci Numbers
+function generateFib(num) {
+ let result = [];
+ for (let i = 1; i <= num; i++) {                               /////->O(n+2) space
+ //ticks++;                                                                   ////->O(n) time
+ if (i === 1) {
+ result.push(0);
+ }
+ else if (i == 2) {
+ result.push(1);
+ }
+ else {
+ result.push(result[i - 2] + result[i - 3]);
+ }
+ }
+ return result;
+}
+
+// 7. Efficient Search
+function efficientSearch(array, item) {
+ let minIndex = 0;
+ let maxIndex = array.length - 1;
+ let currentIndex;
+ let currentElement;
+ while (minIndex <= maxIndex) {
+ currentIndex = Math.floor((minIndex + maxIndex) / 2);
+ currentElement = array[currentIndex];
+ if (currentElement < item) {
+ minIndex = currentIndex + 1;
+ }
+ else if (currentElement > item) {
+ maxIndex = currentIndex - 1;
+ }
+ else {
+ return currentIndex;
+ }
+ }
+ return -1;
+
+
+// 8. Random element
+function findRandomElement(arr) {                                ////->O(n) space        
+ return arr[Math.floor(Math.random() * arr.length)];                               ////->O(1) time
+}
+
+
+// 9. Is It Prime?
+function isPrime(n) {
+ if (n < 2 || n % 1 != 0) {
+ return false;
+ }
+ for (let i = 2; i < n; ++i) {                               /////->O(1) space
+ if (n % i == 0) return false;                                       ////->O(n^3) time
+ }
+ return true;
+}
