@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script>
+        class Node {
+            constructor(next, value) {
+                this.next = next
+                this.value = value;
+            }
+        }
+class Stack {
+    constructor() {
+        this.stack = null
+    }
+    push(element) {
+        let head = this.stack
+        let newNode = new Node(null, element)
+        if (!head) {
+            this.stack = newNode
+           // console.log("stack is empty")
+        } else {
+            newNode.next = head
+            this.stack = newNode
+           // console.log("stack is not empty")
+        }
+    }
+    pop() {
+        let head = this.stack
+        if (!head)
+        return 'Stack is empty!'
+        this.stack = head.next
+        return head.value
+    }
+    peek() {
+        if (!this.stack)
+        return 'Stack is empty!'
+        return this.stack.value
+    }
+}
+var pu = new Stack();
+pu.push(200)
+//console.log(pu)
+pu.push(300)
+pu.push(400);
+console.log(pu.peek());
+//console.log(pu)
+console.log(pu.peek());
+    </script>
+</head>
+<body>
+</body>
+</html>
