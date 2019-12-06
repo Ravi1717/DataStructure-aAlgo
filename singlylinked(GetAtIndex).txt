@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script>
+        class Node{
+            constructor(data,next=null){
+                this.data=data;
+                this.next=next;
+            }
+        }
+        class linkedlist{
+            constructor(){
+                this.head=null;
+                this.size=0;
+            }
+            insertfirst(data){
+                this.head=new Node(data,this.head);
+                this.size++;
+                }
+                insertlast(data){
+                let node=new Node(data);
+                    let current;
+                    if(!this.head){
+                        this.head=node;
+                        this.size++;
+                    }else{
+                        current=this.head;
+                        while(current.next){
+                            current=current.next;
+                            }
+                            current.next=node;
+                            this.size++;
+                             }
+                }
+                insertAtIndex(data,index){
+                    if(index>0 && index>this.size){
+                        return;
+                    }
+                    if(index===0){
+                        this.head= new Node(data,this.head);
+                        return;
+                    }
+                    const node=new Node(data);
+                    let current,previous;
+                    current=this.head;
+                    let count=0;
+                    while(count<index){
+                        previous=current;
+                        count++;
+                        current=current.next;
+                    }
+                    node.next=current;
+                    previous.next=node;
+                    this.size++;
+
+                    }
+                    GetAtIndex(index){
+                        let current=this.head;
+                        let count=0;
+                        while(current){
+                            if(count==index){
+                                console.log(current.data);
+                            }
+                            count++;
+                            current=current.next;
+                        }
+                        return;
+                    }
+                }
+            let l1=new linkedlist();
+            l1.insertfirst(10);
+            l1.insertfirst(20);
+           l1.insertlast(30);
+           l1.insertAtIndex(100,3);
+           l1.GetAtIndex(3);
+            console.log(l1);
+    </script>
+</head>
+<body>
+    
+</body>
+</html>
